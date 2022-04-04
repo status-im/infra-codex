@@ -23,3 +23,8 @@
   src: git@github.com:status-im/infra-role-consul-service.git
   version: 2b3d4e53856d6cc91ae5c5a342fd12f2bb96aa88
   scm: git
+
+- name: infra-role-geth
+  src: git@github.com:status-im/infra-role-geth.git
+  version: 9647eaeaf5331fde07a33fe9d5194e78e3c5cd95
+  scm: git
