@@ -28,3 +28,13 @@
   src: git@github.com:status-im/infra-role-geth.git
   version: 9647eaeaf5331fde07a33fe9d5194e78e3c5cd95
   scm: git
+
+- name: infra-role-nim-codex
+  src: git@github.com:status-im/infra-role-nim-codex.git
+  version: 7353484dcf2c436dad2fe95e77630e0998e8aae2
+  scm: git
+
+- name: systemd-timer
+  src: git@github.com:status-im/infra-role-systemd-timer.git
+  version: c6bbc3d1b4b0ba603d82fa06cd17297d12523182
+  scm: git

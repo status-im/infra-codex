@@ -38,12 +38,20 @@ poa_validators_public_keys:
 nodes_eth_public_keys:
   - 'edcbbfc8b785aa3ada3d7e8cc06a3ec1aa50676b'
   - '15641b0ec20db6b271af3db21e56a9a64eabb69c'
+  - 'a4025d5335b49fd7490d2007ed0afe989c599bc0'
+  - '44322f070f700979fd738e0c81033fe23e92422d'
 
 nodes_layout:
   'metal-01.he-eu-hel1.codex.test':
     validator_index: 0
+    instances:
+      - { pubkey: 0, build_start: '13:00:00' }
+      - { pubkey: 2, build_start: '14:00:00' }
   'metal-02.he-eu-hel1.codex.test':
     validator_index: 1
+    instances:
+      - { pubkey: 1, build_start: '13:00:00' }
+      - { pubkey: 3, build_start: '14:00:00' }
 
 geth_validator_account: '{{ poa_validators_public_keys[nodes_layout[inventory_hostname]["validator_index"]] }}'
 geth_account_json_file: '{{ geth_cont_vol }}/keys/{{ geth_validator_account }}'
@@ -51,3 +59,11 @@ geth_account_json_file: '{{ geth_cont_vol }}/keys/{{ geth_validator_account }}'
 geth_bootnodes:
   - "enode://1f20fc74458821e63f3ef2af550b266efcc079b1f9c2d774cb6eff45f8310130831d67ab4152675b3411c85f0b814afc818f7acf563e05cdbb593fb05dd6c705@65.21.196.45:30303"
   - "enode://1b78da25b32a930278682709972181b9c80d0f37d7e62a4eaf3cfc324142a779518de7ff11f1d9a8df5b86fd3cc3db0cc1222e9d3f116f039e74bd7865698483@65.21.196.46:30303"
+
+# codex
+codex_service_name: 'codex-node-{{ "%02d"|format(idx|int+1) }}'
+codex_rest_port: '{{ 5052 + idx|int }}'
+codex_listening_port: '{{ 9000 + idx|int }}'
+# main is broken rn
+codex_repo_branch: 'erassure'
+codex_eth_public_key: '{{ nodes_eth_public_keys[node["pubkey"]] }}'
