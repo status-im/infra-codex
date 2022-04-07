@@ -64,6 +64,5 @@ geth_bootnodes:
 codex_service_name: 'codex-node-{{ "%02d"|format(idx|int+1) }}'
 codex_rest_port: '{{ 5052 + idx|int }}'
 codex_listening_port: '{{ 9000 + idx|int }}'
-# main is broken rn
-codex_repo_branch: 'erassure'
+codex_repo_branch: 'main'
 codex_eth_public_key: '{{ nodes_eth_public_keys[node["pubkey"]] }}'
