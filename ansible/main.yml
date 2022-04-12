@@ -1,0 +1,39 @@
+---
+- name: Verify Ansible versions
+  hosts: all
+  tags: always
+  become: false
+  run_once: true
+  gather_facts: false
+  tasks:
+    - local_action: command ./versioncheck.py
+      changed_when: false
+
+- name: Setup geth symlink
+  become: true
+  hosts: all
+  tasks:
+    - copy:
+        dest: '/docker/geth/node/keys/account.addr'
+        content: '{{ geth_validator_account }}'
+        owner: dockremap
+        group: docker
+        mode: 0640
+
+- name: Configure geth nodes
+  become: true
+  hosts: all
+  serial: 1
+  roles:
+    - { role: swap-file,                tags: swap-file }
+    - { role: infra-role-geth,          tags: infra-role-geth }
+
+- name: Configure codex instances
+  become: true
+  hosts: all
+  tasks:
+    - include_role: name=infra-role-nim-codex
+      with_items: '{{ nodes_layout[hostname]["instances"] }}'
+      loop_control:
+        loop_var: node
+        index_var: idx
