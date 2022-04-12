@@ -31,7 +31,7 @@
 
 - name: infra-role-nim-codex
   src: git@github.com:status-im/infra-role-nim-codex.git
-  version: 7353484dcf2c436dad2fe95e77630e0998e8aae2
+  version: d9e29e70dcea8e45857f37441de4b5195efe3e8f
   scm: git
 
 - name: systemd-timer
