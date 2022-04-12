@@ -1,0 +1,51 @@
+---
+# Geth
+geth_account_pass: 'verysafe' # FIXME
+geth_network_id: 73738
+geth_sync_mode: 'full'
+geth_port: 30303
+# Init
+geth_init_enabled: true
+geth_init_url: 'https://gist.githubusercontent.com/Menduist/f1de66b9afe9ec9fed20491e1dec1ab4/raw/115bc91d1cb4016c794fb9578686215f652c76a4/dagger%2520testnet%2520genesis'
+geth_init_sha256: '0d48d1be38a8d7b6cc4ddbef339f0e57eb7403736b4f6ecab8ca141c71925dd8'
+geth_miner_enabled: true
+
+geth_consul_enabled: false
+
+geth_validator_account: '{{ poa_validators_public_keys[nodes_layout[inventory_hostname]["validator_index"]] }}'
+geth_account_json_file: '{{ geth_cont_vol }}/keys/{{ geth_validator_account }}'
+
+geth_bootnodes:
+  - "enode://1f20fc74458821e63f3ef2af550b266efcc079b1f9c2d774cb6eff45f8310130831d67ab4152675b3411c85f0b814afc818f7acf563e05cdbb593fb05dd6c705@65.21.196.45:30303"
+  - "enode://1b78da25b32a930278682709972181b9c80d0f37d7e62a4eaf3cfc324142a779518de7ff11f1d9a8df5b86fd3cc3db0cc1222e9d3f116f039e74bd7865698483@65.21.196.46:30303"
+
+poa_validators_public_keys:
+  - '65ff54a53d45b83f2d9bb81f83a70dab1c86007a'
+  - '5b7d8b89c3db49ffbb428bb4988c38a6fe6a5843'
+
+nodes_eth_public_keys:
+  - 'edcbbfc8b785aa3ada3d7e8cc06a3ec1aa50676b'
+  - '15641b0ec20db6b271af3db21e56a9a64eabb69c'
+  - 'a4025d5335b49fd7490d2007ed0afe989c599bc0'
+  - '44322f070f700979fd738e0c81033fe23e92422d'
+
+
+# codex
+codex_service_name: 'codex-node-{{ "%02d"|format(idx|int+1) }}'
+codex_rest_port: '{{ 5052 + idx|int }}'
+codex_listening_port: '{{ 9000 + idx|int }}'
+codex_repo_branch: 'main'
+codex_eth_public_key: '{{ nodes_eth_public_keys[node["pubkey"]] }}'
+
+# Layout
+nodes_layout:
+  'metal-01.he-eu-hel1.codex.test':
+    validator_index: 0
+    instances:
+      - { pubkey: 0, build_start: '13:00:00' }
+      - { pubkey: 2, build_start: '14:00:00' }
+  'metal-02.he-eu-hel1.codex.test':
+    validator_index: 1
+    instances:
+      - { pubkey: 1, build_start: '13:00:00' }
+      - { pubkey: 3, build_start: '14:00:00' }
