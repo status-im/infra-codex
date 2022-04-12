@@ -31,7 +31,7 @@ nodes_eth_public_keys:
 
 
 # codex
-nim_codex_service_name: 'codex-node-{{ "%02d"|format(idx|int+1) }}'
+nim_codex_service_name: 'nim-codex-{{ "%02d"|format(idx|int+1) }}'
 nim_codex_rest_port: '{{ 5052 + idx|int }}'
 nim_codex_listening_port: '{{ 9000 + idx|int }}'
 nim_codex_repo_branch: 'main'
