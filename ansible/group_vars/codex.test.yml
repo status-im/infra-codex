@@ -20,6 +20,7 @@ geth_bootnodes:
 nim_codex_service_name: 'nim-codex-{{ "%02d"|format(idx|int+1) }}'
 nim_codex_rest_port: '{{ 5052 + idx|int }}'
 nim_codex_listening_port: '{{ 9000 + idx|int }}'
+nim_codex_discovery_port: '{{ 9000 + idx|int }}'
 nim_codex_repo_branch: 'main'
 nim_codex_eth_public_key: '{{ eth_public_keys[node["pubkey"]] }}'
 
