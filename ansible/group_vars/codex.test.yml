@@ -16,13 +16,26 @@ geth_bootnodes:
   - "enode://1f20fc74458821e63f3ef2af550b266efcc079b1f9c2d774cb6eff45f8310130831d67ab4152675b3411c85f0b814afc818f7acf563e05cdbb593fb05dd6c705@65.21.196.45:30303"
   - "enode://1b78da25b32a930278682709972181b9c80d0f37d7e62a4eaf3cfc324142a779518de7ff11f1d9a8df5b86fd3cc3db0cc1222e9d3f116f039e74bd7865698483@65.21.196.46:30303"
 
+geth_websocket_addr: '127.0.0.1'
+geth_websocket_port: '8546'
+
 # codex
 nim_codex_service_name: 'nim-codex-{{ "%02d"|format(idx|int+1) }}'
+nim_codex_service_path: '/data/{{ nim_codex_service_name }}'
 nim_codex_rest_port: '{{ 5052 + idx|int }}'
 nim_codex_listening_port: '{{ 9000 + idx|int }}'
 nim_codex_discovery_port: '{{ 9000 + idx|int }}'
 nim_codex_repo_branch: 'main'
+nim_codex_eth_provider: 'ws://{{ geth_websocket_addr }}:{{ geth_websocket_port }}'
 nim_codex_eth_public_key: '{{ eth_public_keys[node["pubkey"]] }}'
+nim_codex_network_key_file: '{{ nim_codex_service_path }}/privnetkey'
+
+nim_codex_bootstrap_nodes:
+  # 4 first codex instances
+  - "spr:CiUIAhIhA2eqMEc5OH8N8KfNTl0bTkVu_h6aqvZoKM7OKpsDz2szEgIDARpICicAJQgCEiEDZ6owRzk4fw3wp81OXRtORW7-Hpqq9mgozs4qmwPPazMQ-_H_kgYaCwoJBEEVxC2RAiMoGgoKCARBFcQtBiMoKkcwRQIhANSl5RUaIT06Lh2b4d7Dz5DGzoUzB5zgMphArAuIeX3HAiAeEWoS33aYdq4Vd_RquFMNrS7n9tXfhYgCgD2dJkrtMA"
+  - "spr:CiUIAhIhA-pSizO7N6-ezUGhn-yvaB09ZxFxZa9tkkiEw26xEOjkEgIDARpICicAJQgCEiED6lKLM7s3r57NQaGf7K9oHT1nEXFlr22SSITDbrEQ6OQQr_L_kgYaCwoJBEEVxC2RAiMpGgoKCARBFcQtBiMpKkYwRAIgZxzvOh1XT5rDF7t24v2P5Y5r722T0x9YmSMqyecnvk8CIGFMTknqICKg2809lvibMerRLKXGmCzHu9E76BKgXnBT"
+  - "spr:CiUIAhIhAwwJp_d-tvU0ahP2Jzc5oT30Ko6HE65VvTQaJYWm3A8hEgIDARpICicAJQgCEiEDDAmn93629TRqE_YnNzmhPfQqjocTrlW9NBolhabcDyEQ3vL_kgYaCwoJBEEVxC6RAiMoGgoKCARBFcQuBiMoKkYwRAIgaFJ0QOR1E1A-ZIHFUSegBytnTentP_H3wRxrKK1m0usCIEef7j44ooPDZPHObvdMWmZcqE_-nKCcwm3qd7B6wxGf"
+  - "spr:CiUIAhIhArJ8mZPVFbsbwCPByN0kdNoxFxaAlOw1CEeZRkbOiM0BEgIDARpICicAJQgCEiECsnyZk9UVuxvAI8HI3SR02jEXFoCU7DUIR5lGRs6IzQEQkvP_kgYaCwoJBEEVxC6RAiMpGgoKCARBFcQuBiMpKkYwRAIgGy1WH9iRgsog7nod3yCOtFlABEBx-pIYd6gik-m85coCIGrdCrNGE4bj0lLTooWMoo4mhZsOs98q-z6D2YUduSTC"
 
 # Public Keys
 poa_public_keys: '{{ lookup("file", "poa_pubkeys").split() }}'
