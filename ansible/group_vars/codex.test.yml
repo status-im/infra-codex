@@ -1,11 +1,8 @@
 ---
 # Geth
-geth_public_keys_count: '{{ (poa_public_keys|length) + (eth_public_keys|length) }}'
-geth_account_pass: |-
-  {% for _ in range(0, (geth_public_keys_count|int)) %}
-  verysafe
-  {% endfor %}
-geth_account_addr: "{{ eth_public_keys | join(',') }}"
+geth_service_name: 'geth'
+geth_service_path: '/docker/{{ geth_service_name }}'
+geth_cont_vol: '{{ geth_service_path }}/node'
 geth_network_id: 73738
 geth_sync_mode: 'full'
 geth_port: 30303
@@ -13,10 +10,15 @@ geth_port: 30303
 geth_init_enabled: true
 geth_init_url: 'https://gist.githubusercontent.com/Menduist/f1de66b9afe9ec9fed20491e1dec1ab4/raw/115bc91d1cb4016c794fb9578686215f652c76a4/dagger%2520testnet%2520genesis'
 geth_init_sha256: '0d48d1be38a8d7b6cc4ddbef339f0e57eb7403736b4f6ecab8ca141c71925dd8'
-# Config
+# Config - TODO deploy keys too.
 geth_miner_enabled: true
-geth_validator_account: '{{ poa_public_keys[nodes_layout[inventory_hostname]["validator_index"]] }}'
-geth_account_json_file: '{{ geth_cont_vol }}/keys/{{ geth_validator_account }}'
+geth_miner_account: '{{ poa_public_keys[nodes_layout[inventory_hostname]["validator_index"]] }}'
+geth_public_keys_count: '{{ (poa_public_keys|length) + (eth_public_keys|length) }}'
+geth_account_pass_raw: '{{ lookup("bitwarden", "codex/test/geth", field="password") }}'
+geth_account_pass: "{{ (geth_account_pass_raw + '\n') * (geth_public_keys_count|int) }}"
+geth_account_json_file: '{{ geth_cont_vol }}/keys/{{ geth_miner_account}}'
+geth_account_addr: '{{ (poa_public_keys + eth_public_keys) | join(",") }}'
+# Bootstrapping
 geth_bootnodes:
   - "enode://1f20fc74458821e63f3ef2af550b266efcc079b1f9c2d774cb6eff45f8310130831d67ab4152675b3411c85f0b814afc818f7acf563e05cdbb593fb05dd6c705@65.21.196.45:30303"
   - "enode://1b78da25b32a930278682709972181b9c80d0f37d7e62a4eaf3cfc324142a779518de7ff11f1d9a8df5b86fd3cc3db0cc1222e9d3f116f039e74bd7865698483@65.21.196.46:30303"
@@ -34,7 +36,6 @@ nim_codex_repo_branch: 'main'
 nim_codex_eth_provider: 'ws://{{ geth_websocket_addr }}:{{ geth_websocket_port }}'
 nim_codex_eth_public_key: '{{ eth_public_keys[node["pubkey"]] }}'
 nim_codex_network_key_file: '{{ nim_codex_service_path }}/privnetkey'
-
 nim_codex_bootstrap_nodes:
   # 4 first codex instances
   - "spr:CiUIAhIhA2eqMEc5OH8N8KfNTl0bTkVu_h6aqvZoKM7OKpsDz2szEgIDARpICicAJQgCEiEDZ6owRzk4fw3wp81OXRtORW7-Hpqq9mgozs4qmwPPazMQ-_H_kgYaCwoJBEEVxC2RAiMoGgoKCARBFcQtBiMoKkcwRQIhANSl5RUaIT06Lh2b4d7Dz5DGzoUzB5zgMphArAuIeX3HAiAeEWoS33aYdq4Vd_RquFMNrS7n9tXfhYgCgD2dJkrtMA"
