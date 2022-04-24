@@ -1,6 +1,11 @@
 ---
 # Geth
-geth_account_pass: 'verysafe' # FIXME
+geth_public_keys_count: '{{ (poa_public_keys|length) + (eth_public_keys|length) }}'
+geth_account_pass: |-
+  {% for _ in range(0, (geth_public_keys_count|int)) %}
+  verysafe
+  {% endfor %}
+geth_account_addr: "{{ eth_public_keys | join(',') }}"
 geth_network_id: 73738
 geth_sync_mode: 'full'
 geth_port: 30303
