@@ -3,7 +3,7 @@
  * 64 GB DDR4 RAM
  * 2 x 512 GB NVMe SSD */
 module "codex" {
-  source = "./modules/dummy-module"
+  source = "github.com/status-im/infra-tf-dummy-module"
 
   name   = "metal"
   env    = local.ws.env
