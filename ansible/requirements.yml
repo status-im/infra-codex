@@ -11,7 +11,7 @@
 
 - name: infra-role-bootstrap-linux
   src: git@github.com:status-im/infra-role-bootstrap-linux.git
-  version: c9ba56896f75e4669d2f949d04726bc8fe82a534
+  version: 08cbaaf426aec73bb112da228b6c0ffd6b939993
   scm: git
 
 - name: infra-role-wireguard
@@ -26,12 +26,12 @@
 
 - name: infra-role-geth
   src: git@github.com:status-im/infra-role-geth.git
-  version: c2f7fac2a0c2a36bfbf4aa0c0c46dfea2f875b6c
+  version: ef8b393d1c5020c50dbd0d3901316c557b3fdbac
   scm: git
 
 - name: infra-role-nim-codex
   src: git@github.com:status-im/infra-role-nim-codex.git
-  version: 246eed3ff3209bcb31b48cbf4a6d56f525993a48
+  version: 55817044450194be8601766cf662a41e9006d06b
   scm: git
 
 - name: systemd-timer
