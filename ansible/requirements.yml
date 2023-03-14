@@ -1,22 +1,18 @@
 ---
-- name: open-ports
-  src: git@github.com:status-im/infra-role-open-ports.git
-  version: 24dc30dbdf85e6758cb6924074b2f7a0f4541524
-  scm: git
-
-- name: swap-file
-  src: git@github.com:status-im/infra-role-swap-file.git
-  version: 3fb0fb8d313ab388df1b38d516e2ff88b72a2cf7
-  scm: git
-
 - name: infra-role-bootstrap-linux
   src: git@github.com:status-im/infra-role-bootstrap-linux.git
-  version: cb3b8f385d7b4844e8e5a00b850402fd9e3b1dbc
   scm: git
 
 - name: infra-role-wireguard
   src: git@github.com:status-im/infra-role-wireguard.git
-  version: 6c83e0bdcecba772e5c652c89e1995865d14c662
+  scm: git
+
+- name: open-ports
+  src: git@github.com:status-im/infra-role-open-ports.git
+  scm: git
+
+- name: swap-file
+  src: git@github.com:status-im/infra-role-swap-file.git
   scm: git
 
 - name: consul-service
@@ -24,17 +20,17 @@
   version: 4849a3c9d7f2045669880e4e17eeb71980b2e4d0
   scm: git
 
+- name: systemd-timer
+  src: git@github.com:status-im/infra-role-systemd-timer.git
+  version: 24b9f3c82b0f2cc89211e40b0abce07e983e67c1
+  scm: git
+
 - name: infra-role-geth
   src: git@github.com:status-im/infra-role-geth.git
-  version: ef8b393d1c5020c50dbd0d3901316c557b3fdbac
+  version: 432a93f7250d7e9c5fc2b303f7c7efa38d4e4bba
   scm: git
 
 - name: infra-role-nim-codex
   src: git@github.com:status-im/infra-role-nim-codex.git
-  version: 1e6d561b230d6ee8df8aa33ab2aaa9cf380ea71a
-  scm: git
-
-- name: systemd-timer
-  src: git@github.com:status-im/infra-role-systemd-timer.git
-  version: 0cc94695f3dada39213a87fbe923cd90e2a7d2c2
+  version: cca801adcdd5b8d5774a41d2107e161ef7341afe
   scm: git
