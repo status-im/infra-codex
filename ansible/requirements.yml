@@ -17,7 +17,7 @@
 
 - name: consul-service
   src: git@github.com:status-im/infra-role-consul-service.git
-  version: 4849a3c9d7f2045669880e4e17eeb71980b2e4d0
+  version: 4d7c9c606f5e039a22c34ba93961d05056c0e002
   scm: git
 
 - name: systemd-timer
@@ -27,7 +27,7 @@
 
 - name: infra-role-geth
   src: git@github.com:status-im/infra-role-geth.git
-  version: 8f7b6ffd8803bceda38a8869e03dfbbad40f26a0
+  version: c74bba65c0b70a4f37ce71a3b6883840851b34cd
   scm: git
 
 - name: infra-role-nim-codex
