@@ -22,12 +22,12 @@
 
 - name: systemd-timer
   src: git@github.com:status-im/infra-role-systemd-timer.git
-  version: 24b9f3c82b0f2cc89211e40b0abce07e983e67c1
+  version: 15fadc81c5bf709be3e0d6071cebb6d6d8287ea0
   scm: git
 
 - name: infra-role-geth
   src: git@github.com:status-im/infra-role-geth.git
-  version: c74bba65c0b70a4f37ce71a3b6883840851b34cd
+  version: 94b473176d1d0235925c45e6756a12ca2fdc7eed
   scm: git
 
 - name: infra-role-nim-codex
