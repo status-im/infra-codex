@@ -1,3 +1,5 @@
+## :warning: This is a legacy repository and no longer used.
+
 # Description
 
 This repo defines infrastructure for Codex fleet running [nim-dagger](https://github.com/status-im/nim-dagger) nodes.
